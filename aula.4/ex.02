@@ -29,7 +29,7 @@ class Pessoa:
         print(f"Idade: {self.__idade}")
 
 
-p1 = Pessoa("Miguel MBL", 16)
+p1 = Pessoa("Daniel", 16)
 p1.apresentar()
 
 p1.set_nome("")
