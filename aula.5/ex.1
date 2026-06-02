@@ -1,0 +1,15 @@
+class animal:
+    def __init__(self, nome):
+        self.nome = nome
+
+    def comer(self):
+        print(f"{self.nome} esta comendo")
+
+class cachorro(animal):
+    def latir(self):
+        print(F"{self.nome} esta latindo")
+
+cachorro = cachorro("mel")
+
+cachorro.comer()
+cachorro.latir()
