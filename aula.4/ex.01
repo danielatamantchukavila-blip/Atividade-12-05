@@ -20,7 +20,7 @@ class Produto:
             print("O preço não pode ser negativo.")
 
 
-produto = Produto("Zenbook 14", 4600)
+produto = Produto("iphone 15 pro", 4600)
 print(produto.get_nome())
 print(produto.get_preco())
 
