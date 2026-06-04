@@ -1,0 +1,28 @@
+class Funcionario:
+    def __init__(self, salario_fixo):
+        self.salario_fixo = salario_fixo
+
+    def calcular_salario(self):
+        return 0
+
+class Vendedor(Funcionario):
+    def __init__(self, salario_fixo, comissao):
+        super().__init__(salario_fixo)
+        self.comissao = comissao
+
+    def calcular_salario(self):
+        return self.salario_fixo + self.comissao
+
+class Gerente(Funcionario):
+    def __init__(self, salario_fixo, bonus):
+        super().__init__(salario_fixo)
+        self.bonus = bonus
+
+    def calcular_salario(self):
+        return self.salario_fixo + self.bonus
+
+vendedor = Vendedor(2000.00, 800.00)
+gerente = Gerente(5000.00, 2000.00)
+
+print(f"Salário do Vendedor: R$ {vendedor.calcular_salario():.2f}")
+print(f"Salário do Gerente: R$ {gerente.calcular_salario():.2f}")
