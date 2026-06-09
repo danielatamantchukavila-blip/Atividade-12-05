@@ -1,0 +1,75 @@
+class Funcionario:
+    def __init__(self, nome, matricula, salario_fixo):
+        self.__nome = nome
+        self.__matricula = matricula
+        self.salario_fixo = salario_fixo  # Chama diretamente o setter para validar
+
+    @property
+    def nome(self):
+        return self.__nome
+
+    @property
+    def matricula(self):
+        return self.__matricula
+
+    @property
+    def salario_fixo(self):
+        return self.__salario_fixo
+
+    @salario_fixo.setter
+    def salario_fixo(self, valor):
+        if valor < 0:
+            raise ValueError("Salario nao pode ser negativo.")
+        self.__salario_fixo = valor
+
+    def calcular_salario(self):
+        raise NotImplementedError
+
+    def exibir(self):
+        tipo = type(self).__name__
+        salario = self.calcular_salario()
+        print(f"Nome : {self.nome} | Matricula : {self.matricula} | Tipo : {tipo} | Salario : R$ {salario:.2f}")
+
+
+class CLT(Funcionario):
+    def __init__(self, nome, matricula, salario_fixo):
+        super().__init__(nome, matricula, salario_fixo)
+
+    def calcular_salario(self):
+        return self.salario_fixo
+
+
+class Vendedor(Funcionario):
+    def __init__(self, nome, matricula, salario_fixo, total_vendas):
+        super().__init__(nome, matricula, salario_fixo)
+        self.total_vendas = total_vendas  # Chama diretamente o setter para validar
+
+    @property
+    def total_vendas(self):
+        return self.__total_vendas
+
+    @total_vendas.setter
+    def total_vendas(self, valor):
+        if valor < 0:
+            raise ValueError("Total de vendas nao pode ser negativo.")
+        self.__total_vendas = valor
+
+    def calcular_salario(self):
+        return self.salario_fixo + self.total_vendas * 0.10
+
+
+class Gerente(Funcionario):
+    def __init__(self, nome, matricula, salario_fixo):
+        super().__init__(nome, matricula, salario_fixo)
+
+    def calcular_salario(self):
+        return self.salario_fixo + 1500.00
+
+funcionarios = [
+    CLT("Ana", "001", 3000.00),
+    Vendedor("Bruno", "002", 2000.00, 12000.00),
+    Gerente("Carla", "003", 5000.00),
+]
+
+for funcionario in funcionarios:
+    funcionario.exibir()
