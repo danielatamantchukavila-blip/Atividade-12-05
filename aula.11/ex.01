@@ -1,0 +1,30 @@
+import sqlite3
+
+conexao = sqlite3.connect("loja.db")
+cursor = conexao.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS produtos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    preco REAL
+)
+""")
+conexao.commit()
+
+cursor.execute(
+    " INSERT INTO produtos ( nome , preco ) VALUES (? , ?) ",
+    ("Celular", 1500.0)
+)
+cursor.execute(
+    " INSERT INTO produtos ( nome , preco ) VALUES (? , ?) ",
+    ("Notebook", 3500.0)
+)
+cursor.execute(
+    " INSERT INTO produtos ( nome , preco ) VALUES (? , ?) ",
+    ("Fone de Ouvido", 150.0)
+)
+
+conexao.commit()
+conexao.close()
+print("Banco criado e produtos inseridos!")
